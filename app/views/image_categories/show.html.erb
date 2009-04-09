@@ -1,0 +1,13 @@
+<h1><%= @image_category.name %></h1>
+
+<%= link_to 'Back to main', image_categories_path %><br />
+
+<% if @images.empty? %>
+	There is no image here 
+<% else %>
+	<% @images.each do | image | %>
+		<%= link_to image_tag(image.thumbnail_url), image.url %><br />
+	<% end %>
+<% end %>
+
+<%= link_to 'Upload Image', new_image_category_image_path(@image_category) %>

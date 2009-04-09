@@ -1,0 +1,4 @@
+<% form_for [@image_category, @image], :html => { :multipart => true } do | f | %>
+	<%= f.file_field :data %>
+	<%= f.submit %>
+<% end %>

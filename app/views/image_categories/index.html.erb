@@ -1,0 +1,6 @@
+<h1>Welcome to gallery</h1>
+ <% @images_categories.each do | cat | %>
+ 	<%= link_to  cat.name, image_category_path(cat) %> | <%= link_to 'Delete', image_category_path(cat), :method => :delete %><br />
+<% end %>
+
+<%= link_to 'New', new_image_category_url %>

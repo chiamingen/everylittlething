@@ -1,0 +1,7 @@
+<h1>Artist List</h1>
+
+<% @artists.each do | a | %>
+	<%= link_to a.name, artist_root_url(:subdomain => a.name) %><br />
+<% end %>
+
+<%= link_to 'New Artist', new_artist_path %>
