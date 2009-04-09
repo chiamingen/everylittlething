@@ -3,11 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<%= stylesheet_link_tag 'main' %>
 <head>
 <body>
-	<% if flash[:notice ] %>
-		<%= flash[:notice] %>
-	<% end %>
-	<%= yield %>
+	<div id="container">
+		<div id="nav"><%= yield :nav %></div>
+		<div id="content">
+			<% if flash[:notice ] %>
+				<%= flash[:notice] %>
+			<% end %>
+			<%= yield %>
+		</div>
+	</div>
 </body>
 </html>

@@ -18,7 +18,7 @@ class Image < ActiveRecord::Base
 		end
 		
 		# create thumbnail
-		command = "convert #{image_path} -resize x200 -resize '200x<' -resize 50% -gravity center -crop 100x100+0+0 +repage #{image_thumbnail_path}"
+		command = "convert #{image_path} -resize x250 -resize '250x<' -resize 50% -gravity center -crop 125x125+0+0 +repage #{image_thumbnail_path}"
 		system(command)
 	end
 

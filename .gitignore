@@ -1,5 +1,6 @@
 log/*.log
 tmp/**/*
+public/images/
 
 # Other useful tidbits
 doc/api

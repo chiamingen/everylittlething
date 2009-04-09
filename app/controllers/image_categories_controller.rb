@@ -2,7 +2,7 @@ class ImageCategoriesController < ApplicationController
 	before_filter :load_artist
 
 	def index
-		@images_categories = ImageCategory.find(:all)
+		@images_categories = ImageCategory.find(:all, :include => :images, :conditions => ["artist_id = ?", @current_artist.id])
 	end
 
 	def show

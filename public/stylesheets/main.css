@@ -1,0 +1,51 @@
+body {
+	background: grey;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 87.5%;
+	line-height: 1.5em
+}
+
+#container {
+	background: white;
+	width: 800px;
+	margin:auto;
+	border: 1px black solid;
+}
+
+/* ####### Navigation CSS ####### */
+
+#nav {
+	padding: 10px 20px;
+	border-bottom: 1px black solid;
+}
+
+#nav ul {
+	padding:0px;
+	margin:0px;
+}
+
+#nav ul li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 7px;
+}
+
+#nav ul li a {
+	text-decoration: none;
+}
+
+/* ####### Content CSS ####### */
+
+#content {
+	padding: 10px 20px;
+}
+
+/* ####### Gallery CSS ####### */
+#gallery {
+	text-align: center;
+}
+
+#gallery a img {
+	border:1px grey solid;
+	padding: 1px;
+}

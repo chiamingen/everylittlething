@@ -1,6 +1,24 @@
-<h1>Welcome to gallery</h1>
- <% @images_categories.each do | cat | %>
- 	<%= link_to  cat.name, image_category_path(cat) %> | <%= link_to 'Delete', image_category_path(cat), :method => :delete %><br />
-<% end %>
+<%= render :partial => 'artists/nav' %>
+
+<h1><%= link_to 'Gallery', image_categories_path %></h1>
 
 <%= link_to 'New', new_image_category_url %>
+
+<% if @images_categories.empty? %>
+	There is no image here 
+<% else %>
+	<table id="gallery"  width="100%">
+	<% @images_categories.in_groups_of(5) do | cat_array | %>
+		<tr>
+		<% cat_array.each do | cat | %>
+			<td width="20%">
+				<% unless cat.nil? %>
+					<%= link_to  image_tag(cat.thumbnail_url), image_category_path(cat) %>
+					<%= link_to 'Delete', image_category_path(cat), :method => :delete %>
+				<% end %>
+			</td>
+		<% end %>
+		</tr>
+	<% end %>
+	</table>
+<% end %>

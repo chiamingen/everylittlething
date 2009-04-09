@@ -1,13 +1,22 @@
-<h1><%= @image_category.name %></h1>
+<%= render :partial => 'artists/nav' %>
 
-<%= link_to 'Back to main', image_categories_path %><br />
+<h1><%= link_to 'Gallery', image_categories_path %> / <%= @image_category.name %></h1>
+
+<p>
+	<%= link_to 'Upload Image', new_image_category_image_path(@image_category) %>
+</p>
 
 <% if @images.empty? %>
 	There is no image here 
 <% else %>
-	<% @images.each do | image | %>
-		<%= link_to image_tag(image.thumbnail_url), image.url %><br />
+	<table id="gallery"  width="100%">
+	<% @images.in_groups_of(5) do | image_array | %>
+		<tr>
+		<% image_array.each do | image | %>
+			<td width="20%"><%= link_to image_tag(image.thumbnail_url), image.url unless image.nil? %></td>
+		<% end %>
+		</tr>
 	<% end %>
+	</table>
 <% end %>
 
-<%= link_to 'Upload Image', new_image_category_image_path(@image_category) %>
