@@ -1,0 +1,35 @@
+<h1>Editing <%= @image_category.name %></h1>
+
+<div id="test">None</div>
+
+<div id="menubar">
+	<table width="100%">
+		<tr>
+			<td width="50%">
+				<%= link_to "Back to #{@image_category.name}", image_category_path(@image_category) %> | 
+				<%= link_to_function 'Move To', "show_menu(event, 'move_to')" %>
+				<ul id="move_to" class="menu" style="display: none">
+					<% @image_categories.each do | cat | %>
+						<li><%= link_to_function cat.name, "move_images('#{move_to_image_category_path(cat)}')" %></li>
+					<% end %>
+				</ul>
+			</td>
+			<td width="50%" align="right"><%= page_entries_info @images %></td>
+		</tr>
+	</table>
+</div>
+
+<% if @images.empty? %>
+	There is no image here 
+<% else %>
+	<% form_tag '' do %>
+		<% tableize(@images, 5, :id => :gallery) do | image | %>
+			<%= link_to_function image_tag(image.thumbnail_url, :class => :thumbnail), "tick_image(event, 'img_#{image.id}')" %>
+			<%= link_to "Full size", image.url %> | 
+			<%= link_to 'Delete', image_path(image), :method => :delete %>
+			<%= check_box_tag 'images[]', image.id, nil, :id => "img_#{image.id}" %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= will_paginate @images, :align => 'right' %>

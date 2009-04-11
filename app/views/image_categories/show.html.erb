@@ -1,10 +1,17 @@
 <h1><%= link_to 'Gallery', image_categories_path %> / <%= @image_category.name %></h1>
 
-<p>
-	<%= link_to 'Upload Image', new_image_category_image_path(@image_category) %> | 
-	<%= link_to 'Delete Category', image_category_path(@image_category), :method => :delete %> | 
-	<%= link_to 'Edit Category', edit_image_category_path(@image_category) %>
-</p>
+<div id="menubar">
+	<table width="100%">
+		<tr>
+			<td width="50%">
+				<%= link_to 'Upload Image', new_image_category_image_path(@image_category) %> | 
+				<%= link_to 'Delete Category', image_category_path(@image_category), :method => :delete %> | 
+				<%= link_to 'Edit Category', edit_image_category_path(@image_category) %>
+			</td>
+			<td width="50%" align="right"><%= page_entries_info @images %></td>
+		</tr>
+	</table>
+</div>
 
 <% if @images.empty? %>
 	There is no image here 
@@ -14,3 +21,4 @@
 	<% end %>
 <% end %>
 
+<%= will_paginate @images, :align => 'right' %>

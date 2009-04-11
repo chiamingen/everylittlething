@@ -5,11 +5,11 @@ class Image < ActiveRecord::Base
 
 	attr_accessor :data
 
-	def before_save
+	def before_create
 		self.filename = Digest::MD5.hexdigest(Time.now.to_i.to_s) + File.extname(self.data.original_filename)
 	end
 
-	def after_save
+	def after_create
 		image_path = GALLERY_DIR + self.filename
 		image_thumbnail_path = GALLERY_THUMBNAIL_DIR + self.filename
 
@@ -23,8 +23,11 @@ class Image < ActiveRecord::Base
 	end
 
 	def after_destroy
-		File.delete(GALLERY_DIR + self.filename)
-		File.delete(GALLERY_THUMBNAIL_DIR + self.filename)
+		begin
+			File.delete(GALLERY_DIR + self.filename)
+			File.delete(GALLERY_THUMBNAIL_DIR + self.filename)
+		rescue
+		end
 	end
 
 	def url

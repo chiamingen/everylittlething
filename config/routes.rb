@@ -27,7 +27,7 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
-  map.resources :image_categories, :has_many => :images
+  map.resources :image_categories, :has_many => :images, :member => { :move_to => :post }
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|

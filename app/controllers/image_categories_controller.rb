@@ -7,7 +7,7 @@ class ImageCategoriesController < ApplicationController
 
 	def show
 		@image_category = ImageCategory.find(params[:id])
-		@images = @image_category.images
+		@images = Image.paginate_by_image_category_id @image_category.id, :page => params[:page], :per_page => 20
 	end
 
 	def new
@@ -27,7 +27,7 @@ class ImageCategoriesController < ApplicationController
 
 	def edit
 		@image_category = ImageCategory.find(params[:id])
-		@images = @image_category.images
+		@images = Image.paginate_by_image_category_id @image_category.id, :page => params[:page], :per_page => 20
 		@image_categories = ImageCategory.find(:all, :conditions => ["artist_id = ? AND id != ?", @current_artist.id, @image_category.id])
 	end
 
@@ -35,5 +35,13 @@ class ImageCategoriesController < ApplicationController
 		ImageCategory.destroy(params[:id])
 		flash[:notice] = "Category delete successfully"
 		redirect_to image_categories_url
+	end
+
+	def move_to
+		unless params[:images].nil?
+			Image.update_all("image_category_id = #{params[:id]}", "id IN(#{params[:images].join(', ')})")
+			flash[:notice] = "Selected images moved successfully"
+		end
+		redirect_to :back
 	end
 end
