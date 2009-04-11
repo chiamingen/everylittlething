@@ -1,5 +1,5 @@
 body {
-	background: grey;
+	background: #ccc;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 87.5%;
 	line-height: 1.5em
@@ -9,6 +9,7 @@ body {
 	background: white;
 	width: 800px;
 	margin:auto;
+	padding-bottom: 25px;
 	border: 1px black solid;
 }
 
@@ -45,7 +46,30 @@ body {
 	text-align: center;
 }
 
-#gallery a img {
-	border:1px grey solid;
+.thumbnail {
+	border:1px #ccc solid;
 	padding: 1px;
 }
+
+#gallery td {
+	padding-bottom: 15px;
+}
+	
+
+#menubar {
+	margin-bottom: 15px;
+}
+
+.menu {
+	position: absolute;
+	background: white;
+	margin: 0px;
+	padding: 5px 20px 10px 8px;
+	border:1px #ccc solid;
+	z-index: 1;
+}
+
+.menu li {
+	list-style-type: none;
+}
+

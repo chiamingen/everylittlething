@@ -1,4 +1,45 @@
-<% form_for [@image_category, @image], :html => { :multipart => true } do | f | %>
-	<%= f.file_field :data %>
-	<%= f.submit %>
+<% content_for :header do %>
+	<%= stylesheet_link_tag 'file_uploader' %>
+	<%= javascript_include_tag 'file_uploader', 'jquery.scrollTo-1.4.0' %>
 <% end %>
+
+<h1>Upload Image to <%= @image_category.name %></h1>
+
+<div id="menu">
+	<%= link_to "Back to #{@image_category.name}", image_category_path(@image_category) %>
+</div>
+
+<div id="upload_box">
+	<div id="header">
+    	<div class="h_name">File</div>
+    	<div class="h_size">Size</div>
+    	<div class="h_select"></div>
+        <div style="clear:both;"></div>
+    </div>
+	<div id="file_collection">
+    </div>
+    <div id="footer">
+    	<table width="100%" cellpadding="0" cellspacing="0">
+        	<tr>
+            	<td width="11%"><span id="num_of_file">0</span> files</td>
+                <td>
+                	<a href="#" style="position:relative;">
+                    	Add Files
+                        <div id="upload_button" style="position:absolute; top:-2px; left:0px;">
+                            <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="55" height="20" id="uploader" align="middle">
+                            <param name="wmode" value="transparent" />
+                            <PARAM NAME="FlashVars" VALUE="upload_url=<%= image_category_images_url(@image_category) %>" />
+                            <param name="allowScriptAccess" value="sameDomain" />
+                            <param name="movie" value="/uploader.swf" /><param name="quality" value="high" />
+							<param name="bgcolor" value="#ffffff" />
+							<embed src="/uploader.swf" quality="high" bgcolor="#ffffff" width="55" height="20" name="uploader" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" FlashVars="upload_url=<%= image_category_images_url(@image_category) %>" />
+                            </object>
+                        </div>
+                    </a> 
+                    | <a href="javascript:upload()">Upload</a>
+                 </td>
+                <td align="right">Total Size: <span id="total_size">0</span></td>
+            </tr>
+        </table>
+    </div>
+</div>

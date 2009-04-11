@@ -1,7 +1,3 @@
-<% content_for :nav do %>
-	<%= render :partial => 'main_nav' %>
-<% end %>
-
 <% form_for @artist do | f | %>
 	Name: <%= f.text_field :name %>
 	<%= f.submit %>

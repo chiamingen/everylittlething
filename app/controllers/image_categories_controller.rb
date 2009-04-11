@@ -25,6 +25,12 @@ class ImageCategoriesController < ApplicationController
 		end
 	end
 
+	def edit
+		@image_category = ImageCategory.find(params[:id])
+		@images = @image_category.images
+		@image_categories = ImageCategory.find(:all, :conditions => ["artist_id = ? AND id != ?", @current_artist.id, @image_category.id])
+	end
+
 	def destroy
 		ImageCategory.destroy(params[:id])
 		flash[:notice] = "Category delete successfully"
