@@ -1,5 +1,5 @@
 class ImageCategory < ActiveRecord::Base
-	has_many :images, :dependent => :destroy
+	has_many :images, :dependent => :destroy, :as => :imageable
 	belongs_to :artist
 
 	def thumbnail_url
@@ -10,4 +10,8 @@ class ImageCategory < ActiveRecord::Base
 		end
 	end
 			
+
+	def paginated_images(page)
+		Image.paginate :per_page => 20, :page => page, :conditions => ["imageable_id = ? AND imageable_type = 'ImageCategory'", self.id]
+	end
 end

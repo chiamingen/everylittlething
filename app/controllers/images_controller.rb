@@ -3,13 +3,22 @@ class ImagesController < ApplicationController
 	end
 
 	def new
-		@image_category = ImageCategory.find(params[:image_category_id])
-		@image = @image_category.images.build
+		if params[:image_category_id]
+			@image_category = ImageCategory.find(params[:image_category_id])
+			@upload_url = image_category_images_url(@image_category)
+		else
+			@disc = Disc.find(params[:disc_id])
+			@upload_url = disc_images_url(@disc)
+		end
 	end
 
 	def create
-		@image_category = ImageCategory.find(params[:image_category_id])
-		@image = @image_category.images.build(params[:image])
+		if params[:image_category_id]
+			@obj = ImageCategory.find(params[:image_category_id])
+		else
+			@obj = Disc.find(params[:disc_id])
+		end
+		@image = @obj.images.build(params[:image])
 		@image.data = params[:Filedata]
 		if @image.save
 			render :text => "Image uploaded successfully", :status => 200

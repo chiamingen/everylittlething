@@ -2,6 +2,7 @@ require 'digest/md5'
 
 class Image < ActiveRecord::Base
 	belongs_to :images_category
+	belongs_to :disc
 
 	attr_accessor :data
 

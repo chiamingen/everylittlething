@@ -7,7 +7,8 @@ class ImageCategoriesController < ApplicationController
 
 	def show
 		@image_category = ImageCategory.find(params[:id])
-		@images = Image.paginate_by_image_category_id @image_category.id, :page => params[:page], :per_page => 20
+		# @images = Image.paginate_by_image_category_id @image_category.id, :page => params[:page], :per_page => 20
+		@images = @image_category.paginated_images(params[:page])
 	end
 
 	def new

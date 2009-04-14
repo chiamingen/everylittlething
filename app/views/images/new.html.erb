@@ -3,10 +3,18 @@
 	<%= javascript_include_tag 'file_uploader', 'jquery.scrollTo-1.4.0' %>
 <% end %>
 
-<h1>Upload Image to <%= @image_category.name %></h1>
+<% if @image_category %>
+	<h1>Upload Image to <%= @image_category.name %></h1>
+<% else %>
+	<h1>Upload Image to <%= @disc.name %></h1>
+<% end %>
 
 <div id="menu">
-	<%= link_to "Back to #{@image_category.name}", image_category_path(@image_category) %>
+	<% if @image_category %>
+		<%= link_to "Back to #{@image_category.name}", image_category_path(@image_category) %>
+	<% else %>
+		<%= link_to "Back to #{@disc.name}", disc_path(@disc) %>
+	<% end %>
 </div>
 
 <div id="upload_box">
@@ -28,11 +36,11 @@
                         <div id="upload_button" style="position:absolute; top:-2px; left:0px;">
                             <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="55" height="20" id="uploader" align="middle">
                             <param name="wmode" value="transparent" />
-                            <PARAM NAME="FlashVars" VALUE="upload_url=<%= image_category_images_url(@image_category) %>" />
+                            <PARAM NAME="FlashVars" VALUE="upload_url=<%= @upload_url %>" />
                             <param name="allowScriptAccess" value="sameDomain" />
                             <param name="movie" value="/uploader.swf" /><param name="quality" value="high" />
 							<param name="bgcolor" value="#ffffff" />
-							<embed src="/uploader.swf" quality="high" bgcolor="#ffffff" width="55" height="20" name="uploader" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" FlashVars="upload_url=<%= image_category_images_url(@image_category) %>" />
+							<embed src="/uploader.swf" quality="high" bgcolor="#ffffff" width="55" height="20" name="uploader" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" FlashVars="upload_url=<%= @upload_url %>" />
                             </object>
                         </div>
                     </a> 
