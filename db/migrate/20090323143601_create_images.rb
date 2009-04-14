@@ -3,8 +3,6 @@ class CreateImages < ActiveRecord::Migration
     create_table :images do |t|
       t.string :filename
 	  t.integer :image_category_id
-
-      t.timestamps
     end
   end
 

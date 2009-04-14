@@ -3,8 +3,6 @@ class CreateImageCategories < ActiveRecord::Migration
     create_table :image_categories do |t|
       t.string :name
 	  t.string :artist_id
-
-      t.timestamps
     end
   end
 

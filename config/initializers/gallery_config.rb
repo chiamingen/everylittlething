@@ -1,2 +1,2 @@
-GALLERY_DIR = "#{RAILS_ROOT}/public/images/gallery/"
-GALLERY_THUMBNAIL_DIR = GALLERY_DIR + "thumbnail/"
+GALLERY_DIR = Rails.root.join('public', 'images', 'gallery')
+GALLERY_THUMBNAIL_DIR = File.join(GALLERY_DIR, "thumbnail")

@@ -38,10 +38,8 @@ class ImageCategoriesController < ApplicationController
 	end
 
 	def move_to
-		unless params[:images].nil?
-			Image.update_all("image_category_id = #{params[:id]}", "id IN(#{params[:images].join(', ')})")
-			flash[:notice] = "Selected images moved successfully"
-		end
+		Image.update_all("image_category_id = #{params[:id]}", "id IN(#{params[:image_ids].join(', ')})")
+		flash[:notice] = "Selected images moved successfully"
 		redirect_to :back
 	end
 end

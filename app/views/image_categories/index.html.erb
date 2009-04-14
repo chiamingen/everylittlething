@@ -1,9 +1,9 @@
 <h1><%= link_to 'Gallery', image_categories_path %></h1>
 
-<p><%= link_to 'New', new_image_category_url %></p>
+<div id="menubar"><%= link_to 'New Category', new_image_category_url %></div>
 
 <% if @images_categories.empty? %>
-	There is no image here 
+	There is no category here 
 <% else %>
 	<% tableize(@images_categories, 5, :id => 'gallery') do | cat |%>
 		<%= link_to  image_tag(cat.thumbnail_url, :class => :thumbnail), image_category_path(cat) %><br />

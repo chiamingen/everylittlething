@@ -12,7 +12,8 @@
 					<% @image_categories.each do | cat | %>
 						<li><%= link_to_function cat.name, "move_images('#{move_to_image_category_path(cat)}')" %></li>
 					<% end %>
-				</ul>
+				</ul> |
+				<%= link_to_function 'Delete', "delete_selected('#{destroy_all_images_path}')" %>
 			</td>
 			<td width="50%" align="right"><%= page_entries_info @images %></td>
 		</tr>
@@ -27,7 +28,7 @@
 			<%= link_to_function image_tag(image.thumbnail_url, :class => :thumbnail), "tick_image(event, 'img_#{image.id}')" %>
 			<%= link_to "Full size", image.url %> | 
 			<%= link_to 'Delete', image_path(image), :method => :delete %>
-			<%= check_box_tag 'images[]', image.id, nil, :id => "img_#{image.id}" %>
+			<%= check_box_tag 'image_ids[]', image.id, nil, :id => "img_#{image.id}" %>
 		<% end %>
 	<% end %>
 <% end %>

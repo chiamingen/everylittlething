@@ -19,15 +19,16 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
   map.resources :artists
-  map.resources :images
-  # map.resources :image_categories
-  
+  map.resources :discs
+  map.resources :images, :collection => { :destroy_all => :post }
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
   map.resources :image_categories, :has_many => :images, :member => { :move_to => :post }
+  map.resources :disc_categories, :has_many => :discs
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|

@@ -21,6 +21,12 @@ class ImagesController < ApplicationController
 	def destroy
 		Image.destroy(params[:id])
 		flash[:notice] = "Image deleted successfully"
-		redirect_to images_url
+		redirect_to :back
+	end
+
+	def destroy_all
+		Image.destroy(params[:image_ids])
+		flash[:notice] = "Image deleted successfully"
+		redirect_to :back
 	end
 end

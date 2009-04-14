@@ -1,3 +1,31 @@
+var song_counter = 1;
+
+function remove_song(e, is_new) {
+	var target = get_target(e);
+	if (is_new) {
+		$(target).parent().remove();
+	} else {
+		$(target).siblings("input[type='checkbox']").attr('checked', 'checked');
+		$(target).parent().css('display', 'none');
+	}
+}
+
+function add_song() {
+	var html = '<div class="song_field">';
+ 	html += 'Name: <input id="disc_songs_attributes_new_' + song_counter + '_name" name="disc[songs_attributes][new_' + song_counter + '][name]" size="30" type="text" /> ';
+	html += '<a href="#" onclick="remove_song(event, true); return false;">Delete</a>';
+	html += '</div>';
+
+	$('#song_form').append(html);
+	song_counter++;
+}
+
+function delete_selected(url) {
+	var form = $('form')[0];
+	form.action = url;
+	form.submit();
+}
+	
 function move_images(url) {
 	if (get_ticked_image_ids().length > 0) {
 		var form = $('form')[0];

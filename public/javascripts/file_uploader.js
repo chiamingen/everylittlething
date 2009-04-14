@@ -1,3 +1,4 @@
+
 function all_files_uploaded() {
 	
 }
@@ -50,7 +51,7 @@ function update_status(num_of_file, total_size) {
 
 
 function file_start(fileID) {
-	$('#file_collection').scrollTo('#' + fileID, 1000, {offset: {top:-110} });
+	$('#file_collection').scrollTo('#' + fileID, 500, {offset: {top:-110} });
 }
 
 function upload() {

@@ -10,8 +10,8 @@ class Image < ActiveRecord::Base
 	end
 
 	def after_create
-		image_path = GALLERY_DIR + self.filename
-		image_thumbnail_path = GALLERY_THUMBNAIL_DIR + self.filename
+		image_path = File.join(GALLERY_DIR, self.filename)
+		image_thumbnail_path = File.join(GALLERY_THUMBNAIL_DIR, self.filename)
 
 		File.open(image_path, "w") do | f |
 			f.write(self.data.read)
@@ -23,11 +23,8 @@ class Image < ActiveRecord::Base
 	end
 
 	def after_destroy
-		begin
-			File.delete(GALLERY_DIR + self.filename)
-			File.delete(GALLERY_THUMBNAIL_DIR + self.filename)
-		rescue
-		end
+		File.delete(File.join(GALLERY_DIR, self.filename))
+		File.delete(File.join(GALLERY_THUMBNAIL_DIR, self.filename))
 	end
 
 	def url
