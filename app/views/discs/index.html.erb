@@ -1,0 +1,16 @@
+<h1><%= link_to 'Disc', disc_categories_path %></h1>
+
+<div id="menubar"><%= link_to 'New Category', new_disc_category_url %></div>
+
+<% if @disc_categories.empty? %>
+	There is no category here 
+<% else %>
+	<% @disc_categories.each do | cat | %>
+		<h2><%= cat.name %></h2>
+		<%= link_to 'New Disc', new_disc_category_disc_path(cat) %>
+		<% tableize(cat.discs, 5, :id => 'gallery') do | disc | %>
+			<%= link_to image_tag(disc.cover_img_url, :class => 'thumbnail'), disc_path(disc) %><br />
+			<%= disc.name %>
+		<% end %>
+	<% end %>
+<% end %>

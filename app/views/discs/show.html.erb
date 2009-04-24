@@ -1,0 +1,18 @@
+<%= link_to 'Back', discs_path %><br />
+
+<h1><%= @disc.name %></h1>
+
+<b>Released On: </b><%= @disc.released_on %><br />
+
+<b>Songs</b><br />
+<% @disc.songs.each do | song | %>
+	<%= song.name %><br />
+<% end %>
+
+<b>Disc Covers</b>
+<% tableize(@disc.images, 5, :id => 'gallery') do | image | %>
+	<%= link_to image_tag(image.thumbnail_url, :class => :thumbnail), image.url %>
+<% end %>
+
+<%= link_to 'Edit', edit_disc_path(@disc) %>
+<%= link_to 'Add Images', new_disc_image_path(@disc) %>

@@ -1,0 +1,20 @@
+<%= form.error_messages %>
+
+Name: <%= form.text_field :name %><br />
+Release Date: <%= form.date_select :released_on, :start_year => 1990, :include_blank => true %><br />
+
+Songs: <%= link_to_function 'Add Song', 'add_song()' %><br />
+<div id="song_form">
+	<% form.fields_for :songs do | song_form | %>
+		<div class="song_field">
+			Name: <%= song_form.text_field :name %>
+			<% unless song_form.object.new_record? %>
+				<%= link_to_function 'Delete', 'remove_song(event, false)' %>
+				<%= song_form.check_box :_delete, :style => 'display: none' %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
+<hr />
+
+<%= form.submit %>
