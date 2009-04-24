@@ -1,6 +1,6 @@
 
 function all_files_uploaded() {
-	
+	alert("Done");
 }
 
 function getFlashMovie(movieName) {

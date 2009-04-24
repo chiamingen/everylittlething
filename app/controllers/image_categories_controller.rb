@@ -7,7 +7,6 @@ class ImageCategoriesController < ApplicationController
 
 	def show
 		@image_category = ImageCategory.find(params[:id])
-		# @images = Image.paginate_by_image_category_id @image_category.id, :page => params[:page], :per_page => 20
 		@images = @image_category.paginated_images(params[:page])
 	end
 
@@ -27,9 +26,11 @@ class ImageCategoriesController < ApplicationController
 	end
 
 	def edit
+		#@image_category = ImageCategory.find(params[:id])
+		#@images = Image.paginate_by_image_category_id @image_category.id, :page => params[:page], :per_page => 20
 		@image_category = ImageCategory.find(params[:id])
-		@images = Image.paginate_by_image_category_id @image_category.id, :page => params[:page], :per_page => 20
 		@image_categories = ImageCategory.find(:all, :conditions => ["artist_id = ? AND id != ?", @current_artist.id, @image_category.id])
+		@images = @image_category.paginated_images(params[:page])
 	end
 
 	def destroy
@@ -39,7 +40,7 @@ class ImageCategoriesController < ApplicationController
 	end
 
 	def move_to
-		Image.update_all("image_category_id = #{params[:id]}", "id IN(#{params[:image_ids].join(', ')})")
+		Image.update_all("imageable_id = #{params[:id]}", "id IN(#{params[:image_ids].join(', ')})")
 		flash[:notice] = "Selected images moved successfully"
 		redirect_to :back
 	end

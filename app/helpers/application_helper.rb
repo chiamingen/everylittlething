@@ -1,6 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-	def tableize(objects, items_per_row, table_attr = {}, &block)
+	def tableize(objects, items_per_row = 5, table_attr = {}, &block)
 		table_attr.merge!(:width => '100%')
 		td_width = 100/items_per_row
 
