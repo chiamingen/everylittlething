@@ -5,8 +5,9 @@
 		<tr>
 			<td width="50%">
 				<%= link_to 'Upload Image', new_image_category_image_path(@image_category) %> | 
-				<%= link_to 'Delete Category', image_category_path(@image_category), :method => :delete %> | 
-				<%= link_to 'Edit Category', edit_image_category_path(@image_category) %>
+				<%= link_to 'Organize Images', organize_image_category_path(@image_category) unless @images.empty? %> | 
+				<%= link_to 'Edit', edit_image_category_path(@image_category) %> | 
+				<%= link_to 'Delete', image_category_path(@image_category), :method => :delete, :confirm => 'Are you sure?' %>
 			</td>
 			<td width="50%" align="right"><%= page_entries_info @images %></td>
 		</tr>

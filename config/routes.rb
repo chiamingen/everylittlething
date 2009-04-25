@@ -27,7 +27,7 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
-  map.resources :image_categories, :has_many => :images, :member => { :move_to => :post }
+  map.resources :image_categories, :has_many => :images, :member => { :move_to => :post, :organize => :get }
   map.resources :disc_categories, :has_many => :discs
 
   # Sample resource route within a namespace:

@@ -21,9 +21,13 @@ function add_song() {
 }
 
 function delete_selected(url) {
-	var form = $('form')[0];
-	form.action = url;
-	form.submit();
+	if (get_ticked_image_ids().length > 0) {
+		var form = $('form')[0];
+		form.action = url;
+		form.submit();
+	} else {
+		alert('Please select some images');
+	}
 }
 	
 function move_images(url) {

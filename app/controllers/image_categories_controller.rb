@@ -24,10 +24,22 @@ class ImageCategoriesController < ApplicationController
 			render "new"
 		end
 	end
-
+	
 	def edit
-		#@image_category = ImageCategory.find(params[:id])
-		#@images = Image.paginate_by_image_category_id @image_category.id, :page => params[:page], :per_page => 20
+		@image_category = ImageCategory.find(params[:id])
+	end
+
+	def update
+		@image_category = ImageCategory.find(params[:id])
+		if @image_category.update_attributes(params[:image_category])
+			flash[:notice] = "Category edited successfully"
+			redirect_to image_category_url(@image_category)
+		else
+			render "edit"
+		end
+	end
+
+	def organize
 		@image_category = ImageCategory.find(params[:id])
 		@image_categories = ImageCategory.find(:all, :conditions => ["artist_id = ? AND id != ?", @current_artist.id, @image_category.id])
 		@images = @image_category.paginated_images(params[:page])

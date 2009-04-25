@@ -7,10 +7,16 @@
 <% else %>
 	<% @disc_categories.each do | cat | %>
 		<h2><%= cat.name %></h2>
-		<%= link_to 'New Disc', new_disc_category_disc_path(cat) %>
-		<% tableize(cat.discs, 5, :id => 'gallery') do | disc | %>
-			<%= link_to image_tag(disc.cover_img_url, :class => 'thumbnail'), disc_path(disc) %><br />
-			<%= disc.name %>
+		<%= link_to 'New Disc', new_disc_category_disc_path(cat) %> | 
+		<%= link_to 'Edit Disc', edit_disc_category_path(cat) %> | 
+		<%= link_to 'Delete', disc_category_path(cat), :method => :delete, :confirm => 'Are you sure?' %><br />
+		<% if cat.discs.empty? %>
+			There is no disc in this category
+		<% else %>
+			<% tableize(cat.discs, 5, :id => 'gallery') do | disc | %>
+				<%= link_to image_tag(disc.cover_img_url, :class => 'thumbnail'), disc_path(disc) %><br />
+				<%= disc.name %>
+			<% end %>
 		<% end %>
 	<% end %>
 <% end %>

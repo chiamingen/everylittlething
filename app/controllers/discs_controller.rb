@@ -12,9 +12,7 @@ class DiscsController < ApplicationController
 	def new
 		@disc_category = DiscCategory.find(params[:disc_category_id])
 		@disc = @disc_category.discs.build
-		@disc.songs.build
-		@disc.songs.build
-		@disc.songs.build
+		3.times { @disc.songs.build }
 	end
 
 	def create
@@ -22,7 +20,7 @@ class DiscsController < ApplicationController
 		@disc = @disc_category.discs.build(params[:disc])
 		if @disc.save
 			flash[:notice] = "Disc created successfully"
-			redirect_to disc_category_url(@disc_category)
+			redirect_to discs_url
 		else
 			render "new"
 		end
@@ -36,7 +34,7 @@ class DiscsController < ApplicationController
 		@disc = Disc.find(params[:id])
 		if @disc.update_attributes(params[:disc])
 			flash[:notice] = "Disc updated succesfully"
-			redirect_to disc_category_url(@disc.disc_category_id)
+			redirect_to discs_url
 		else
 			render "edit"
 		end

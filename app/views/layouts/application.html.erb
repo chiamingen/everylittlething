@@ -17,7 +17,7 @@
 		</div>
 		<div id="content">
 			<% if flash[:notice ] %>
-				<%= flash[:notice] %>
+				<div id="notice"><%= flash[:notice] %></div>
 			<% end %>
 			<%= yield %>
 		</div>

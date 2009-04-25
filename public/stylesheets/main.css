@@ -13,6 +13,11 @@ body {
 	border: 1px black solid;
 }
 
+#notice {
+	background: yellow;
+	padding: 5px 10px;
+}
+
 /* ####### Navigation CSS ####### */
 
 #nav {
@@ -42,6 +47,7 @@ body {
 }
 
 /* ####### Gallery CSS ####### */
+
 #gallery {
 	text-align: center;
 }
@@ -73,3 +79,8 @@ body {
 	list-style-type: none;
 }
 
+/* ####### Form CSS ####### */
+
+.fieldWithErrors input {
+	border: solid red 1px;
+}

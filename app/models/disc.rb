@@ -1,6 +1,6 @@
 class Disc < ActiveRecord::Base
-	has_and_belongs_to_many :songs
-	has_many :images, :as => :imageable
+	has_and_belongs_to_many :songs, :dependent => :destroy
+	has_many :images, :as => :imageable, :dependent => :destroy
 
 	accepts_nested_attributes_for :songs, :allow_destroy => true, :reject_if => proc { | attributes | attributes['name'].blank? }
 

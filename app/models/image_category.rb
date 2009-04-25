@@ -2,6 +2,8 @@ class ImageCategory < ActiveRecord::Base
 	has_many :images, :dependent => :destroy, :as => :imageable
 	belongs_to :artist
 
+	validates_presence_of :name
+
 	def thumbnail_url
 		if @images.empty?
 			'/images/gallery/empty.jpg'
