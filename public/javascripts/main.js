@@ -128,3 +128,7 @@ function find_pos_y(obj) {
         curtop += obj.y;
     return curtop;
 }
+
+function remove_mp3() {
+	alert("sdf");
+}

@@ -1,0 +1,19 @@
+<h1>Edit <%= @disc.name %>'s Songs</h1>
+
+<% @songs.each do | song | %>
+	<%= song.name %><br />
+	<div class="song_function">
+		<% if song.filename.blank? %>
+			<span id="song_<%= song.id %>">>Please get flash</span>
+			<script type="text/javascript">
+				var flashvars = {
+						upload_url: "/songs/upload",
+						song_id: "<%= song.id %>"
+				};
+				swfobject.embedSWF("/mp3_uploader.swf", "song_<%= song.id %>", "85", "20", "9.0.0", null, flashvars);
+			</script>
+		<% else %>
+			<%= link_to_function 'Remove MP3', 'remove_mp3()' %>
+		<% end %>
+	</div>
+<% end %>

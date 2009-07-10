@@ -1,0 +1,15 @@
+<% if images.empty? %>
+	There is no image here 
+<% else %>
+	<% form_tag '' do %>
+		<% tableize(images, 5, :id => :gallery) do | image | %>
+			<%= link_to_function image_tag(image.thumbnail_url, :class => :thumbnail), "tick_image(event, 'img_#{image.id}')" %>
+			<%= link_to "Full size", image.url %> | 
+			<%= link_to 'Delete', image_path(image), :method => :delete %>
+			<%= check_box_tag 'image_ids[]', image.id, nil, :id => "img_#{image.id}" %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= will_paginate images, :align => 'right' %>
+

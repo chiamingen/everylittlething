@@ -1,0 +1,8 @@
+<h1>Organize Images</h1>
+
+<div id="menubar">
+	<%= link_to "Back to #{@disc.name}", disc_path(@disc) %> | 
+	<%= link_to_function 'Delete', "delete_selected('#{destroy_all_images_path}')" %>
+</div>
+
+<%= render :partial => 'image_categories/images' %>

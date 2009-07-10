@@ -8,7 +8,7 @@
 	<% @disc_categories.each do | cat | %>
 		<h2><%= cat.name %></h2>
 		<%= link_to 'New Disc', new_disc_category_disc_path(cat) %> | 
-		<%= link_to 'Edit Disc', edit_disc_category_path(cat) %> | 
+		<%= link_to 'Edit', edit_disc_category_path(cat) %> | 
 		<%= link_to 'Delete', disc_category_path(cat), :method => :delete, :confirm => 'Are you sure?' %><br />
 		<% if cat.discs.empty? %>
 			There is no disc in this category

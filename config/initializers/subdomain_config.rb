@@ -1,4 +1,4 @@
-SubdomainFu.tld_sizes = {:development => 1,
+SubdomainFu.tld_sizes = {:development => 0,
                          :test => 0,
 						 :production => 1}
 

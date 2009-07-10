@@ -39,4 +39,14 @@ class DiscsController < ApplicationController
 			render "edit"
 		end
 	end
+
+	def organize_images
+		@disc= Disc.find(params[:id])
+		@images = @disc.paginated_images(params[:page])
+	end
+
+	def organize_songs
+		@disc = Disc.find(params[:id])
+		@songs = @disc.songs
+	end
 end

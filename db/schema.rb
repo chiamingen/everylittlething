@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090412051017) do
+ActiveRecord::Schema.define(:version => 20090412045411) do
 
   create_table "artists", :force => true do |t|
     t.string "name"
@@ -26,11 +26,6 @@ ActiveRecord::Schema.define(:version => 20090412051017) do
     t.integer "disc_category_id"
   end
 
-  create_table "discs_songs", :id => false, :force => true do |t|
-    t.integer "disc_id"
-    t.integer "song_id"
-  end
-
   create_table "image_categories", :force => true do |t|
     t.string "name"
     t.string "artist_id"
@@ -43,7 +38,9 @@ ActiveRecord::Schema.define(:version => 20090412051017) do
   end
 
   create_table "songs", :force => true do |t|
-    t.string "name"
+    t.string  "name"
+    t.string  "filename"
+    t.integer "disc_id"
   end
 
 end
